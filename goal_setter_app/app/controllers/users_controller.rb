@@ -9,12 +9,17 @@ class UsersController < ApplicationController
     
     if @user.save
       login(@user)
-      # redirect_to
+      redirect_to user_url(@user)
     else
       flash[:errors] = @user.errors.full_messages
       redirect_to new_user_url
     end
   end
+  
+  def show 
+    @user = current_user
+    render :show
+  end 
   
   private 
   
