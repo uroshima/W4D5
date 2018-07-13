@@ -4,10 +4,12 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
   
-  # has_many :goals,
-  #   foreign_key: :user_id,
-  #   class_name: :Goal
+  has_many :goals,
+    foreign_key: :user_id,
+    class_name: :Goal
+    
   attr_reader :password 
+  
   after_initialize :ensure_session_token
   
   def self.find_by_credentials(username, password)
